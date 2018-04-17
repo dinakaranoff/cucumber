@@ -2,37 +2,19 @@ package steps;
 
 import java.util.List;
 import java.util.Map;
-
-//import mx4j.log.Logger;
-
-
-
-
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import java.util.Arrays;
-import org.openqa.selenium.remote.CapabilityType;
-
-
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-
-
-//import com.digicert.PropertyReader;
-//i//mport com.digicert.SeleniumManager;
+import com.digi.PropertyReader;
+import com.digi.SeleniumManager;
 //import com.digi.TestContext;
-//import com.digi.Manager;
+import com.digi.Manager;
 
 import cucumber.api.DataTable;
 import cucumber.api.java.Before;
@@ -45,62 +27,24 @@ public class Test {
 	//TestContext txt;
 	
 	    private static WebDriver driver;
-	    DesiredCapabilities dCaps;
-
-	//	public  PropertyReader propertyReader;
+		public  PropertyReader propertyReader;
 	//	public TestContext txt;
-	//	public SeleniumManager seleniumManager;
-		
-	//	private  Test(){
-//			try{
-//				propertyReader=PropertyReader.getPropertyReader();
-//				seleniumManager=SeleniumManager.getSeleniumManager();	
-//			    driver=SeleniumManager.getdriver();
-//			    driver.get(propertyReader.getURL());
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//			
-	//	}	
+		public SeleniumManager seleniumManager;
+			
 	
 	@Given("^Open TCC LoginPage$")
-	public void open_TCC_LoginPage() throws Throwable {
-
-
-				System.setProperty("webdriver.chrome.driver", "C:/Users/dinakaran_palaniswam/Desktop/Softwares/chromedriver.exe");
-				dCaps = DesiredCapabilities.chrome();
-				//Enable plug-in like java required by some applications like SSLTOOLS
-				dCaps.setCapability("chrome.switches", Arrays.asList("--always-authorize-plugins"));
-				//Bypass the SSL error 
-				dCaps.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-			//	driver = new ChromeDriver(dCaps);
-			
-			
-		//System.setProperty("webdriver.ie.driver", "C:/Users/dinakaran_palaniswam/Desktop/Softwares/IEDriverServer-w32.exe");
-		//dCaps = DesiredCapabilities.internetExplorer();
-		//dCaps.setCapability("ignoreZoomSetting", true);
-		//dCaps.setCapability("ignoreProtectedModeSettings", true);
-		//driver = new InternetExplorerDriver(dCaps);
-
-	driver=new InternetExplorerDriver("webdriver.ie.driver","C:/Program Files (x86)/Internet Explorer/iexplore.exe");	
-	driver.get("https://ssl-certificate-center5.thawte.symclab.net/process/trust/console_login?application_locale=THAWTE_US");
-		Thread.sleep(5000);
-		System.out.println("HHHHHHHHHHHHHHHHHHHH");
-		driver.findElement(By.id("txtboxUserName")).sendKeys("oemtcc@wssqa.net");
-		driver.findElement(By.id("txtboxPassword")).sendKeys("P@ssword1");
-		driver.findElement(By.id("continueButton")).click();
-
-
-		Thread.sleep(5000);
-driver.close();
-System.out.println("HHHHHHHHHHHHHHHHHHHH");
-	
+	public void open_TCC_LoginPage() throws Throwable {		
+//		propertyReader=PropertyReader.getPropertyReader();
+//		seleniumManager=SeleniumManager.getSeleniumManager();
+		 driver=SeleniumManager.getdriver();
+	    driver.get(PropertyReader.getPropertyReader().getURL());
+ 	
 	}
 	
 	@Given("^Open LoginPage$")
 	public void open_LoginPage() throws Throwable {
-		//driver=new FirefoxDriver();
-		//driver.get(facebookURI);
+		 driver=SeleniumManager.getdriver();
+	    driver.get(PropertyReader.getPropertyReader().getURL());
 	}
 
 	@When("^Enter credentials$")
