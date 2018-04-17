@@ -8,7 +8,7 @@ import java.util.Properties;
 public class PropertyReader {
 	
 	private static  Properties properties;
-	private final String path="C:\\Users\\SSLAdmin\\git\\TestGit\\selecnium_cucumber_project\\properties\\Config.properties";
+	private final String path="properties\\Config.properties";
 	private static PropertyReader propertyReader=null;
 	private static LoggerManager logger;
 	private String currentClasssName=this.getClass().getName();
