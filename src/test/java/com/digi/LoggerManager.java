@@ -20,6 +20,7 @@ public class LoggerManager {
 	static String  directory=null;
 	static File file=null; 
 	static PrintWriter pw=null;
+	
 
 	private static String  getFolderName(){
 		directory=String.valueOf(date.getDate())+

@@ -55,7 +55,7 @@ public class SeleniumManager {
 		
 	}
 
-	public static WebDriver getdriver() {
+	public  WebDriver getdriver() {
 		return driver;	
 	}
 

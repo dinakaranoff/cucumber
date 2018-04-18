@@ -2,49 +2,30 @@ package steps;
 
 import java.util.List;
 import java.util.Map;
+
 import org.junit.Assert;
-import org.junit.BeforeClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
-
-import com.digi.PropertyReader;
-import com.digi.SeleniumManager;
-//import com.digi.TestContext;
-import com.digi.Manager;
-
+import com.digi.TestContext;
 import cucumber.api.DataTable;
-import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class Test {
-
-	//TestContext txt;
-	
 	    private static WebDriver driver;
-		public  PropertyReader propertyReader;
-	//	public TestContext txt;
-		public SeleniumManager seleniumManager;
-			
-	
+		private TestContext context=new TestContext();
+		
 	@Given("^Open TCC LoginPage$")
-	public void open_TCC_LoginPage() throws Throwable {		
-//		propertyReader=PropertyReader.getPropertyReader();
-//		seleniumManager=SeleniumManager.getSeleniumManager();
-		 driver=SeleniumManager.getdriver();
-	    driver.get(PropertyReader.getPropertyReader().getURL());
- 	
-	}
+	public void open_TCC_LoginPage() throws Throwable {
+		driver=context.getDriver();
+		driver.get(context.getpropertyReader().getURL());
+		}
 	
 	@Given("^Open LoginPage$")
 	public void open_LoginPage() throws Throwable {
-		 driver=SeleniumManager.getdriver();
-	    driver.get(PropertyReader.getPropertyReader().getURL());
+		 driver=context.getDriver();
+		driver.get(context.getpropertyReader().getURL());
 	}
 
 	@When("^Enter credentials$")
@@ -82,8 +63,6 @@ public class Test {
 			driver.findElement(By.id("continueButton")).click();
 			
 		}
-		
-
 	}
 		
 	@When("^Enter userName \"([^\"]*)\"  password \"([^\"]*)\"$")
@@ -91,7 +70,6 @@ public class Test {
 		driver.findElement(By.id("txtboxUserName")).sendKeys(userName);
 		driver.findElement(By.id("txtboxPassword")).sendKeys(password);
 		driver.findElement(By.id("continueButton")).click();
-		System.out.println("Expected Value");
 	}
 
 	@When("^Logout happens$")
@@ -102,6 +80,23 @@ public class Test {
 	@Then("^Come back to LoginPage$")
 	public void come_back_to_LoginPage() throws Throwable {
 		Assert.assertTrue(driver.findElement(By.id("txtboxUserName")).isDisplayed());
+	}
+	
+	@Given("^open inconsole search page$")
+	public void open_inconsole_search_page() throws Throwable {
+	}
+
+	@When("^search Pending Orders$")
+	public void search_Pending_Orders() throws Throwable {
+	}
+
+	@Then("^Verify some order are found$")
+	public void verify_some_order_are_found() throws Throwable {
+	}
+
+	@When("^search Valid orders$")
+	public void search_Valid_orders() throws Throwable {
+		
 	}
 		
 }

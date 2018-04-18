@@ -1,24 +1,33 @@
 package com.digi;
 
-import com.digi.Manager;
- 
-////public class TestContext {
-////	private  Manager webDriverManager;
-////	private PropertyReader  propertyReader;
-////	
-////	public TestContext(){
-////		webDriverManager = new Manager();
-////		propertyReader=new PropertyReader();
-////	}
-////	
-////	public Manager getWebDriverManager() {
-////		return webDriverManager;
-////	}
-////	
-////	public PropertyReader getpropertyReader() {
-////		return propertyReader;
-////	}
-//	
-//	
-// 
-//}
+import org.openqa.selenium.WebDriver;
+
+public class TestContext {
+	private PropertyReader  propertyReader;
+	private SeleniumManager  seleniumManager;
+	private LoggerManager logger;
+	private WebDriver driver;
+
+	public TestContext(){
+		seleniumManager = SeleniumManager.getSeleniumManager();
+		propertyReader=PropertyReader .getPropertyReader();
+		driver=seleniumManager.getdriver();
+		logger=LoggerManager.getLogger();
+	}
+	
+	public WebDriver getDriver() {
+		return  driver;
+	}
+	
+	public LoggerManager getLogger() {
+		return  logger;
+	}
+	
+	public PropertyReader getpropertyReader() {
+		return propertyReader;
+	}
+	
+	public SeleniumManager getSeleniumManager() {
+		return seleniumManager;
+	}
+}

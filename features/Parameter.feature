@@ -15,16 +15,15 @@
 #<> (placeholder)
 #""
 ## (Comments)
+
 #Sample Feature Definition Template
+Feature: Parameter Testing
 
-@Login2
-Feature: TCC Login Page 
-
-	 Scenario: Login with valid data
+@SanityTest
+Scenario: Login with valid data
     Given Open TCC LoginPage
-    When Enter Credentials from datatable
-    |oemtcc@wssqa.net	| P@ssword1 |
-   #Then Validate HomePage
-   #And close the browser
-
+    When Enter userName "oemtcc@wssqa.net"  password "P@ssword1"
+    Then Validate HomePage
+		And  Logout happens
+		Then Come back to LoginPage
  
