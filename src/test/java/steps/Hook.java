@@ -74,8 +74,9 @@ public class Hook  {
 			try {
 				File sourcePath = ((TakesScreenshot) context.getSeleniumManager().getdriver()).getScreenshotAs(OutputType.FILE);
 				File destinationPath = new File(System.getProperty("user.dir") + "/target/cucumber-reports/screenshots/" + screenshotName + ".png");
-		//		Files.copy(sourcePath, destinationPath);   
- 		//		Reporter.addScreenCaptureFromPath(destinationPath.toString());
+				Files.copy(sourcePath.toPath(), destinationPath.toPath());
+			  //	Files.copy(sourcePath, destinationPath);   
+			//	Reporter.addScreenCaptureFromPath(destinationPath.toString());
 			} catch (Exception e) {
 			} 
 		}
