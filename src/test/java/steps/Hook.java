@@ -8,23 +8,13 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
-<<<<<<< HEAD
-import com.digi.PropertyReader;
-import com.digi.SeleniumManager;
-//import com.digi.TestContext;
-
-
-import com.digi.Manager;
-=======
 import com.digi.LoggerManager;
 import com.digi.TestContext;
 
 import cucumber.api.Scenario;
->>>>>>> a76ce26be88588911aa512a04d65efe23c63fd0c
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 
-//hello
 public class Hook  {
 
 	
@@ -86,14 +76,13 @@ public class Hook  {
 				File destinationPath = new File(System.getProperty("user.dir") + "/target/cucumber-reports/screenshots/" + screenshotName + ".png");
 				Files.copy(sourcePath.toPath(), destinationPath.toPath());
 			  //	Files.copy(sourcePath, destinationPath);   
-			//	Reporter.addScreenCaptureFromPath(destinationPath.toString());
 			} catch (Exception e) {
 			} 
 		}
 	}
 
 
-	@After(order=0)
+	@After
 	public void cleanUp(){
     	driver=context.getDriver();
 		driver.close();
