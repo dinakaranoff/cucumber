@@ -24,8 +24,7 @@ import com.digi.SeleniumManager;
 					enterLoginUserName("");
 					enterLoginPassword("");
 					clickSignInButton();
-		//			selenium.waitForElementNotPresent(signin);
-					
+	
 			} catch (Exception e) {
 				logger.error(localClass,"Login is Failed",e);
 }

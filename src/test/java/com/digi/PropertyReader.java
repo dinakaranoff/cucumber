@@ -4,16 +4,18 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
+import com.digi.LoggerManager;
 
 public class PropertyReader {
 	
 	private static  Properties properties;
 	private final String path="properties\\Config.properties";
+	//private final String reportConfigPath="configs\\extent-config.xml";
 	private static PropertyReader propertyReader=null;
 	private static LoggerManager logger;
 	private String currentClasssName=this.getClass().getName();
 	
-	public   PropertyReader(){
+	private PropertyReader(){
 		BufferedReader bufferReader;
 		try {
 			logger=LoggerManager.getLogger();			
@@ -28,6 +30,13 @@ public class PropertyReader {
 			}
 	}
 
+	
+	public String getReportConfigPath(){
+		String reportConfigPath = properties.getProperty("reportConfigPath");
+		if(reportConfigPath!= null) return reportConfigPath;
+		else throw new RuntimeException("Report Config Path not specified in the Configuration.properties file for the Key:reportConfigPath");		
+	}
+	
 	public static PropertyReader getPropertyReader(){
 		if(propertyReader==null){
 			propertyReader=new PropertyReader();

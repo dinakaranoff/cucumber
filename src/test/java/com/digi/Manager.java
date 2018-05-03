@@ -1,19 +1,7 @@
 package com.digi;
-
-
-
-import org.junit.AfterClass;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-
-
-
-import com.cons.Constants;
 
 public class Manager {
-
 	private  static WebDriver driver=null;
 	private static PropertyReader  propertyReader;
 	private static SeleniumManager seleniumManager;
@@ -22,16 +10,15 @@ public class Manager {
 	private  String currentClassName=this.getClass().getName();
 
 	
-	public  void setup(){
-//		initProperty();
-		initLogger();
-		initWebdriver();
+	public Manager(){
+		initialize();
 	}
 
-	public Manager(){
+	public void initialize(){
 				try {
-					initWebdriver();					
+					initProperty();
 					initLogger();
+					initWebdriver();					
 					} catch (Exception e) {
 				logger.error(currentClassName, "Unable to read property File", e);
 				}
@@ -46,48 +33,43 @@ public class Manager {
 
 	}
 
-//	private  void initProperty(){
-//		try {
-//			propertyReader=PropertyReader.getPropertyReader();
-//		}catch (Exception e) {
-//			logger.error(currentClassName, "Unable to read property File", e);
-//		}
-//	}
+	private  void initProperty(){
+		try {
+			System.out.println("initiproperty");
+			propertyReader=PropertyReader.getPropertyReader();
+		}catch (Exception e) {
+			logger.error(currentClassName, "Unable to read property File", e);
+		}
+	}
 
 	private  void initWebdriver(){
 		try {
 			seleniumManager=SeleniumManager.getSeleniumManager();
+			driver=seleniumManager.getdriver();
 		}catch (Exception e) {
 			logger.error(currentClassName, "Unable to read property File", e);
 		}
 	}
 	
-	public static WebDriver getDriver(){
+	public  WebDriver getDriver(){
 		return driver;
 	}
 
-	public static SeleniumManager getSeleniumManager(){
+	public  SeleniumManager getSeleniumManager(){
 		return seleniumManager;
+	}
+
+	public  PropertyReader getPropertyReader(){
+		return propertyReader;
 	}
 
 		
 
-	private void cleanup(){
+	public void cleanup(){
 		logger.info("killing driver");
 		driver.close();
 		logger.cleanup();		
 	}
 	
-
-	//	
-	//	@Test
-	//	public void testSample(){
-	//		driver =WebdriverManager.getDriver();
-	//	}
-
-
-	//	public static void main(String[] args){
-	//		driver =WebdriverManager.getDriver();
-	//	}
 
 }

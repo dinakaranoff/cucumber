@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-
 import com.cons.Constants;
 
 public class SeleniumManager {
@@ -55,7 +54,7 @@ public class SeleniumManager {
 		
 	}
 
-	public static WebDriver getdriver() {
+	public  WebDriver getdriver() {
 		return driver;	
 	}
 
